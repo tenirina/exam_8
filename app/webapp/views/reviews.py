@@ -13,7 +13,6 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     model = Review
 
     def get_context_data(self, **kwargs):
-        print(kwargs)
         context = super().get_context_data(**kwargs)
         context['product'] = Product.objects.get(pk=self.kwargs.get('pk'))
         return context
