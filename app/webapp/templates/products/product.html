@@ -3,14 +3,18 @@
 {% block content %}
     <br>
     <div class="card mb-3">
-      <img src="{{ product.image }}" class="card-img-top" alt="product">
+      {% if prod.image %}
+          <img class="prod_img" src="{{ product.image.url }}" alt="prod picture">
+      {% else %}
+          <img class="prod_img" src="../uploads/product/download.jpeg" alt="prod picture">
+      {% endif %}
       <div class="card-body">
         <h5 class="card-title"> Title: {{product.title}}</h5>
         <p class="card-text"><strong>Description:</strong> {{product.description}}</p>
         <p class="card-text"><strong>Category:</strong> {{product.category}}</p>
         <p class="card-text"><strong>Date of created:</strong> {{product.created_at}}</p>
-        <a href="#" class="btn btn-secondary">Edit product</a>
-        <a href="#" class="btn btn-secondary">Delete product</a>
+        <a href="{% url 'product_update' product.pk %}" class="btn btn-secondary">Edit product</a>
+        <a href="{% url 'product_delete' product.pk %}" class="btn btn-secondary">Delete product</a>
         <a href="#" class="btn btn-secondary">Add review</a>
       </div>
     </div>

@@ -18,7 +18,7 @@
         <a class="navbar-brand" href="{% url 'index' %}">Review</a>
         {% block navbar %}{% endblock %}
         {% if user.is_authenticated %}
-            <spam class="navbar-nav"><a class="nav-link" href="#">Create product</a></spam>
+            <spam class="navbar-nav"><a class="nav-link" href="{% url 'product_create' %}">Create product</a></spam>
             <spam class="navbar-nav"><a class="nav-link" href="#">Profile</a></spam>
             {% block menu %}{% endblock %}
         {% else %}

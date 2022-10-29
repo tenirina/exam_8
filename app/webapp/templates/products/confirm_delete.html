@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="main">
+        <h2> Delete product? </h2>
+        <div class="card">
+              <div class="card-header">
+                {{ product.title }}
+              </div>
+              <div class="card-body">
+                <p class="card-text"><strong>Description:</strong> {{product.description}}</p>
+                <p class="card-text"><strong>Category:</strong> {{product.category}}</p>
+                <p class="card-text"><strong>Date of created:</strong> {{product.created_at}}</p>
+                <form action="{% url 'product_delete' product.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-secondary" value="Delete">
+                    <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+              </div>
+        </div>
+    </div>
+{% endblock %}
