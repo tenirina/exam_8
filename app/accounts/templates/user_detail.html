@@ -17,6 +17,7 @@
     <p>Last name: {{ user_obj.last_name }}</p>
     <p>Email: {{ user_obj.email }}</p>
     <a href="{% url 'change' user_obj.pk %}" class="btn btn-secondary">Edit profile</a>
+    <a href="{% url 'password_change' user_obj.pk %}" class="btn btn-secondary"> Password change</a>
     <h3 class="text-center clear">Reviews: </h3>
      {% for el in user_obj.reviews.all %}
         <h5>{{el.product.title}}</h5>
