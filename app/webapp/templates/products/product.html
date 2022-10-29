@@ -13,13 +13,20 @@
         <p class="card-text"><strong>Description:</strong> {{product.description}}</p>
         <p class="card-text"><strong>Category:</strong> {{product.category}}</p>
         <p class="card-text"><strong>Date of created:</strong> {{product.created_at}}</p>
+        {% for el in avm_grade %}
+          <i class="bi bi-star-fill"></i>
+         {% endfor %}
         <h5>Reviews:</h5>
           {% if product.reviews.all %}
               {% for el in product.reviews.all %}
+                <p>Author - {{el.author}} </p>
+                <p>Email - {{el.author.email}} </p>
                 <p>Text - {{ el.text }}</p>
                 <p>Grade - {{ el.grade }}</p>
-                <a href="{% url 'review_update' product.pk %}" class="btn btn-secondary">Edit review</a>
-                <a href="{% url 'review_delete' product.pk %}" class="btn btn-secondary">Delete review</a>
+                <p>
+                <a href="{% url 'review_update' el.pk %}" class="btn btn-secondary">Edit review</a>
+                <a href="{% url 'review_delete' el.pk %}" class="btn btn-secondary">Delete review</a>
+                </p>
               {% endfor %}
           {% else %}
             <p>Reviews not</p>
