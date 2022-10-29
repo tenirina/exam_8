@@ -11,7 +11,7 @@ class CategoriesChoices(TextChoices):
 class Product(models.Model):
     title = models.CharField(verbose_name='Title', null=False, blank=False, max_length=25)
     category = models.CharField(verbose_name='Category', choices=CategoriesChoices.choices, max_length=25, default=CategoriesChoices.VEGETABLES)
-    description = models.CharField(verbose_name='Description', max_length=150)
+    description = models.TextField(verbose_name='Description', max_length=150)
     image = models.ImageField(verbose_name='Photo', null=True, blank=False, upload_to='product')
     is_deleted = models.BooleanField(verbose_name='Delete', default=False, null=False)
     created_at = models.DateTimeField(verbose_name='Date of creation', auto_now_add=True)
