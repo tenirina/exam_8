@@ -41,8 +41,8 @@ class Migration(migrations.Migration):
                 ('status', models.BooleanField(default=False, verbose_name='Status')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Date of creation')),
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Date of change')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='review', to=settings.AUTH_USER_MODEL, verbose_name='Author')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='review', to='webapp.product', verbose_name='webapp.Product')),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to=settings.AUTH_USER_MODEL, verbose_name='Author')),
+                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='webapp.product', verbose_name='webapp.Product')),
             ],
         ),
     ]

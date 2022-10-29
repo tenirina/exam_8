@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 
-from webapp.models import Product
+from webapp.models import Product, Review
 
 
 def max_length_validator(string):
@@ -20,6 +20,10 @@ class ProductForm(forms.ModelForm):
         fields = ('title', 'category', 'description', 'image')
 
 
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ('text', 'grade')
 
 
 
