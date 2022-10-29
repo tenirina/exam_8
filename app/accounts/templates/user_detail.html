@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block menu %}
+    <spam class="navbar-nav"><a class="nav-link" href="{% url 'change' user_obj.pk %}">Update</a></spam>
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h3>User's personal page {{ user_obj.get_full_name|default:user_obj.username }}</h3>
+    {% if user_obj.avatar %}
+        <img class="avatar_img" src="{{ user_obj.avatar.url }}" alt="user picture">
+    {% endif %}
+    <p>User name: {{ user_obj.username }}</p>
+    <p>First name: {{ user_obj.first_name }}</p>
+    <p>Last name: {{ user_obj.last_name }}</p>
+    <p>Email: {{ user_obj.email }}</p>
+    <a href="{% url 'change' user_obj.pk %}" class="btn btn-secondary">Edit profile</a>
+    <h3 class="text-center clear">Reviews: </h3>
+     {% for el in user_obj.reviews.all %}
+        <h5>{{el.product.title}}</h5>
+        <p>Text - {{ el.text }}</p>
+        <p>Grade - {{ el.grade }}</p>
+        <p>
+            <a href="{% url 'product' el.product.pk %}" class="btn btn-secondary">Product</a>
+            <a href="{% url 'review_update' el.pk %}" class="btn btn-secondary">Edit review</a>
+            <a href="{% url 'review_delete' el.pk %}" class="btn btn-secondary">Delete review</a>
+        </p>
+    {% endfor %}
+{% endblock %}

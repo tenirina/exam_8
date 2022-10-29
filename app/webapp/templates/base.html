@@ -20,11 +20,12 @@
         {% block navbar %}{% endblock %}
         {% if user.is_authenticated %}
             <spam class="navbar-nav"><a class="nav-link" href="{% url 'product_create' %}">Create product</a></spam>
-            <spam class="navbar-nav"><a class="nav-link" href="#">Profile</a></spam>
+            <spam class="navbar-nav"><a class="nav-link" href="{% url 'profile' user.pk %}">Profile  {{user.username}}</a></spam>
+            <spam class="navbar-nav"><a class="nav-link " href="{% url 'logout' %}">Sign out</a></spam>
             {% block menu %}{% endblock %}
         {% else %}
-            <spam class="navbar-nav"><a class="nav-link " href="#">Sign in</a></spam>
-            <spam class="navbar-nav"><a class="nav-link " href="#">Register</a></spam>
+            <spam class="navbar-nav"><a class="nav-link " href="{% url 'login' %}">Sign in</a></spam>
+            <spam class="navbar-nav"><a class="nav-link " href="{% url 'register' %}">Register</a></spam>
         {% endif %}
     </div>
 </nav>

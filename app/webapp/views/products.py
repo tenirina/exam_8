@@ -29,6 +29,12 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     context_object_name = 'product'
 
+    def get_context_data(self, **kwargs):
+        if self.request.method == 'POST':
+            kwargs['data'] = self.request.POST
+            kwargs['files'] = self.request.FILES
+        return super().get_context_data(**kwargs)
+
     def get_success_url(self):
         return reverse("product", kwargs={'pk': self.object.pk})
 

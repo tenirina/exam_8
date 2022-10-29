@@ -5,6 +5,12 @@ from django.forms import widgets
 from webapp.models import Product, Review
 
 
+def length_grade_validator(string):
+    if 0 > int(string) > 6:
+        raise ValidationError("Score should be no more than 5")
+    return string
+
+
 def max_length_validator(string):
     if len(string) < 3:
         raise ValidationError("The number of characters must be more than 2!")
@@ -21,10 +27,8 @@ class ProductForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
+    grade = forms.CharField(max_length=1, required=True, label='Grade', validators=(length_grade_validator, ))
 
     class Meta:
         model = Review
         fields = ('text', 'grade')
-
-
-
