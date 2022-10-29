@@ -23,16 +23,20 @@
                 <p>Email - {{el.author.email}} </p>
                 <p>Text - {{ el.text }}</p>
                 <p>Grade - {{ el.grade }}</p>
+
                 <p>
                 <a href="{% url 'review_update' el.pk %}" class="btn btn-secondary">Edit review</a>
                 <a href="{% url 'review_delete' el.pk %}" class="btn btn-secondary">Delete review</a>
                 </p>
+
               {% endfor %}
           {% else %}
             <p>Reviews not</p>
           {% endif %}
-        <a href="{% url 'product_update' product.pk %}" class="btn btn-secondary">Edit product</a>
-        <a href="{% url 'product_delete' product.pk %}" class="btn btn-secondary">Delete product</a>
+          {% if perms.webapp.change_product %}
+            <a href="{% url 'product_update' product.pk %}" class="btn btn-secondary">Edit product</a>
+            <a href="{% url 'product_delete' product.pk %}" class="btn btn-secondary">Delete product</a>
+          {% endif %}
         <a href="{% url 'review_create' product.pk %}" class="btn btn-secondary">Add review</a>
       </div>
     </div>

@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, UpdateView, CreateView, DeleteView
 
@@ -23,7 +23,8 @@ class ProductView(DetailView):
         return context
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'webapp.change_product'
     template_name = 'products/update.html'
     form_class = ProductForm
     model = Product
@@ -39,7 +40,8 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return reverse("product", kwargs={'pk': self.object.pk})
 
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'webapp.create_product'
     template_name = 'products/create.html'
     form_class = ProductForm
     model = Product
@@ -48,7 +50,8 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         return reverse('product', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'webapp.delete_product'
     template_name = 'products/confirm_delete.html'
     model = Product
     success_url = reverse_lazy('index')
