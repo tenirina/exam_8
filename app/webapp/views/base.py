@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 
-class IndexView():
+def index_view():
     pass
